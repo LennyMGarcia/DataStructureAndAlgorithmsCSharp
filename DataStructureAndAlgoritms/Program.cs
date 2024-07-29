@@ -2,6 +2,8 @@
 using DataStructureAndAlgorithms.Models;
 using DataStructureAndAlgorithms.Data;
 using DataStructureAndAlgorithms.DataStructures.Basics;
+using DataStructureAndAlgorithms.Algorithms.Sorting;
+using DataStructureAndAlgorithms.TestData;
 using System.Collections.Generic;
 // See https://aka.ms/new-console-template for more information
 /*using ShopContext context = new ShopContext();
@@ -18,21 +20,21 @@ foreach (Customer customer in customers)
 var objetoAnonimo = new
 {
     Propiedad1 = "Valor1",
-    Propiedad2 = 123,
+    Propiedad2 = 3,
     Propiedad3 = true
 };
 
 var objetoAnonimo2 = new
 {
     Propiedad1 = "Valor2",
-    Propiedad2 = 1232,
+    Propiedad2 = 2,
     Propiedad3 = true
 };
 
 var objetoAnonimo3 = new
 {
     Propiedad1 = "Valor3",
-    Propiedad2 = 1234,
+    Propiedad2 = 1,
     Propiedad3 = true
 };
 
@@ -101,3 +103,24 @@ while (!queue.IsEmpty)
 
 Console.WriteLine("Cola vacía: " + queue.IsEmpty);
 Console.WriteLine(new String('-', 20));
+
+//----------------------------------------------------
+
+Console.WriteLine("SORTING");
+Person[] people = new Person[]
+        {
+            new Person("John", 25),
+            new Person("Alice", 30),
+            new Person("Bob", 25),
+            new Person("Eve", 28),
+            new Person("Charlie", 22)
+        };
+
+//BubbleSort.Sort("Age", people);
+SelectionSort.Sort("Age", people);
+foreach (var person in people)
+{
+    Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
+}
+
+
