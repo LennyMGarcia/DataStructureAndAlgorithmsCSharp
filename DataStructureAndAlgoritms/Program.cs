@@ -111,13 +111,15 @@ Person[] people = new Person[]
         {
             new Person("John", 25),
             new Person("Alice", 30),
-            new Person("Bob", 25),
+            new Person("Bob", 20),
             new Person("Eve", 28),
             new Person("Charlie", 22)
         };
 
 //BubbleSort.Sort("Age", people);
-SelectionSort.Sort("Age", people);
+//SelectionSort.Sort("Age", people);
+InsertionSort.Sort("Age", people);
+
 foreach (var person in people)
 {
     Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
