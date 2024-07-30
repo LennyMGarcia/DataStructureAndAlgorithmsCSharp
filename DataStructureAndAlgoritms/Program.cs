@@ -125,4 +125,8 @@ foreach (var person in people)
     Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
 }
 
+/*int[] arr = { 12, 3, 11, 7, 5, 6 };
+IterativeMergeSort.Sort(arr);
+Console.WriteLine(string.Join(",", arr));*/
+
 
