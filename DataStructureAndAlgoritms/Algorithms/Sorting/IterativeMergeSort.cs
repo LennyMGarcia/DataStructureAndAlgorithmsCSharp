@@ -8,10 +8,10 @@ namespace DataStructureAndAlgorithms.Algorithms.Sorting
 {
     public class IterativeMergeSort
     {
-        public static void Sort(int[] arr)
+        public static void Sort(string evaluatedProperty, object[] objArray)
         {
-            int length = arr.Length;
-            int[] temp = new int[length];
+            int length = objArray.Length;
+            object[] temp = new object[length];
             //primer for para incrementar geometricamente
             for (int size = 1; size < length; size *= 2)
             {
@@ -24,22 +24,26 @@ namespace DataStructureAndAlgorithms.Algorithms.Sorting
                     //limite derecho, es el doble del tamano de la lista menos un elemento izquierdo
                     int rightEnd = Math.Min(leftStart + 2 * size - 1, length - 1);
 
-                    Merge(arr, temp, leftStart, mid, rightEnd);
+                    Merge(objArray, temp, leftStart, mid, rightEnd, evaluatedProperty);
                 }
             }
         }
 
-        private static void Merge(int[] arr, int[] temp, int left, int mid, int right)
+        private static void Merge(object[] arr, object[] temp, int left, int mid, int right, string evaluatedProperty)
         {
             int i = left; //valores de la lista real
             int j = mid + 1; //limite principal izquierda + 1
             int k = left; //valores de la lista temporal
-
+            
             //bucle principal de comparacion
             while (i <= mid && j <= right)
             {
-                //primer numero menor al segundo
-                if (arr[i] <= arr[j])
+                //primer numero menor al segundo arr[i] <= arr[j]
+                if (
+                    (dynamic?)arr[i].GetType().GetProperty(evaluatedProperty)?.GetValue(arr[i]) 
+                    <= 
+                    (dynamic?)arr[j].GetType().GetProperty(evaluatedProperty)?.GetValue(arr[j])
+                   )
                 {
                     temp[k++] = arr[i++];
                 }
