@@ -121,11 +121,13 @@ Person[] people = new Person[]
 //InsertionSort.Sort("Age", people);
 //IterativeMergeSort.Sort("Age", people);
 //RecursiveMergeSort.Sort("Age", people);
-QuickSort.Sort("Age", people);
+//QuickSort.Sort("Age", people);
+HeapSort.Sort("Age", people);
 foreach (var person in people)
 {
     Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
 }
+
 
 
 
