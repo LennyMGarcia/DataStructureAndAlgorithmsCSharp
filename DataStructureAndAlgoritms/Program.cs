@@ -3,6 +3,7 @@ using DataStructureAndAlgorithms.Models;
 using DataStructureAndAlgorithms.Data;
 using DataStructureAndAlgorithms.DataStructures.Basics;
 using DataStructureAndAlgorithms.Algorithms.Sorting;
+using DataStructureAndAlgorithms.Algorithms.Search;
 using DataStructureAndAlgorithms.TestData;
 using System.Collections.Generic;
 // See https://aka.ms/new-console-template for more information
@@ -127,6 +128,13 @@ foreach (var person in people)
 {
     Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
 }
+Console.WriteLine(new String('-', 20));
+
+//--------------------------------------------------------------------------------
+//  SEARCH  
+Console.WriteLine("SEARCH");
+Person target = new Person("Alice", 30);
+LinearSearch.Search(people, target, (p1, p2) => p1.Name == p2.Name && p1.Age == p2.Age);
 
 
 
