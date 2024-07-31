@@ -25,12 +25,15 @@ namespace DataStructureAndAlgorithms.Algorithms.Sorting
                     {
                         throw new InvalidOperationException("There are null");
                     }
-
+                    //va buscando que elemento va a seleccionar, si es ese elemento actual menor al al del indice minimo
+                    //el indice minimo se mueve
                     if (actualValue < minIndexValue)
                     {
                         minIndex = j;
                     }
                 }
+                //si ese indice minimo es diferente de si mismo
+                //intercambia el valor seleccionado con el del indice siempre que sea mas pequeno
                 if(minIndex != i)
                 {
                     object temp = objArray[i];

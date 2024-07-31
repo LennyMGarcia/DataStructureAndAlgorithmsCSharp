@@ -23,7 +23,8 @@ namespace DataStructureAndAlgorithms.Algorithms.Sorting
                     {
                         throw new InvalidOperationException("There are null");
                     }
-
+                    //simplemente si el actual es mayor al siguiente lo cambia de lugar, lo hace el numero de veces que haya de items
+                    //por eso este es ineficiente
                     if (actualValue > nextValue)
                     {
                         object temp = objArray[j];

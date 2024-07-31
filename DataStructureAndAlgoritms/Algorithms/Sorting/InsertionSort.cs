@@ -19,12 +19,13 @@ namespace DataStructureAndAlgorithms.Algorithms.Sorting
                 int j = i - 1;
                 dynamic? prevValue = objArray[j].GetType().GetProperty(evaluatedProperty)?.GetValue(objArray[j]);
 
+                //mientras el anterior sea mayor al actual, mueve los valores hacia adelante
                 while (j >= 0 &&  prevValue > keyValue)
                 {
                     objArray[j + 1] = objArray[j];
                     j = j - 1;
                 }
-
+                //e inserta ese valor en el lugar de atras donde quedo
                 objArray[j + 1] = key;
             }
         }
