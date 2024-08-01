@@ -135,7 +135,9 @@ Console.WriteLine(new String('-', 20));
 Console.WriteLine("SEARCH");
 Person target = new Person("Alice", 30);
 LinearSearch.Search(people, target, (p1, p2) => p1.Name == p2.Name && p1.Age == p2.Age);
+int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+int target2 = 5;
 
-
+BinarySearch.Search(people, 30, "Age");
 
 
