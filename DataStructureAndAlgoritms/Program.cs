@@ -2,6 +2,7 @@
 using DataStructureAndAlgorithms.Models;
 using DataStructureAndAlgorithms.Data;
 using DataStructureAndAlgorithms.DataStructures.Basics;
+using DataStructureAndAlgorithms.DataStructures.Trees;
 using DataStructureAndAlgorithms.Algorithms.Sorting;
 using DataStructureAndAlgorithms.Algorithms.Search;
 using DataStructureAndAlgorithms.TestData;
@@ -107,7 +108,7 @@ Console.WriteLine(new String('-', 20));
 
 //----------------------------------------------------
 
-Console.WriteLine("SORTING");
+
 Person[] people = new Person[]
         {
             new Person("John", 25),
@@ -117,6 +118,23 @@ Person[] people = new Person[]
             new Person("Charlie", 22)
         };
 
+//---------------------------------------------------------------
+Console.WriteLine("TREES");
+BinaryTree<int> tree = new BinaryTree<int>();
+for (int i = 0; i < people.Length; i++)
+{
+    tree.Add(people[i].Age);
+}
+
+
+//tree.PostOrderTraversal();
+//tree.PreOrderTraversal();
+//tree.InOrderTraversal(); 
+tree.PrintTree(tree.Root);
+
+Console.WriteLine(new String('-', 20));
+//----------------------------------------------------------------
+Console.WriteLine("SORTING");
 //BubbleSort.Sort("Age", people);
 //SelectionSort.Sort("Age", people);
 //InsertionSort.Sort("Age", people);
@@ -124,6 +142,7 @@ Person[] people = new Person[]
 //RecursiveMergeSort.Sort("Age", people);
 //QuickSort.Sort("Age", people);
 HeapSort.Sort("Age", people);
+
 foreach (var person in people)
 {
     Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
@@ -135,9 +154,10 @@ Console.WriteLine(new String('-', 20));
 Console.WriteLine("SEARCH");
 Person target = new Person("Alice", 30);
 LinearSearch.Search(people, target, (p1, p2) => p1.Name == p2.Name && p1.Age == p2.Age);
-int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-int target2 = 5;
 
 BinarySearch.Search(people, 30, "Age");
+
+Console.WriteLine(new String('-', 20));
+
 
 
