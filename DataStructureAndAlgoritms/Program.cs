@@ -132,12 +132,12 @@ for (int i = 0; i < people.Length; i++)
 //tree.PostOrderTraversal();
 //tree.PreOrderTraversal();
 //tree.InOrderTraversal(); 
-tree.PrintTree(tree._root);
-//tree.PrintTree(tree.Root);
+tree.Print();
+//tree.Print();
 tree.Delete(25);
 Console.WriteLine("---------");
-tree.PrintTree(tree._root);
-//tree.PrintTree(tree.Root);
+tree.Print();
+//tree.Print();
 
 Console.WriteLine(new String('-', 20));
 //----------------------------------------------------------------
@@ -166,5 +166,17 @@ BinarySearch.Search(people, 30, "Age");
 
 Console.WriteLine(new String('-', 20));
 
+//----------------------------------------------------------------------------------
 
+AvlTree avltree = new AvlTree();
+
+avltree.Insert(5);
+avltree.Insert(3);
+avltree.Insert(7);
+avltree.Insert(2);
+avltree.Insert(4);
+avltree.Insert(6);
+avltree.Insert(8);
+
+avltree.Print();
 

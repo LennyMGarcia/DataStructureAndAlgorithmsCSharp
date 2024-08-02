@@ -34,18 +34,32 @@ namespace DataStructureAndAlgorithms.DataStructures.Trees
             Root = new Node<T>(value);
         }
 
-        public void PrintTree(Node<T>? node, string indent = "")
+        public void Print()
         {
-            if (node == null) return;
+            Print(Root, "", true);
+        }
 
-            Console.Write(indent);
-            if (indent.Length > 0)
+        private void Print(Node<T>? node, string indent, bool isLast)
+        {
+            if (node != null)
             {
-                Console.Write(indent.Last() == 'l' ? "l" : "r");
+                Console.Write(indent);
+                if (isLast)
+                {
+                    Console.Write("R----");
+                    indent += "     ";
+                }
+                else
+                {
+                    Console.Write("L----");
+                    indent += "|    ";
+                }
+
+                Console.WriteLine(node.Value);
+
+                Print(node.Left, indent, false);
+                Print(node.Right, indent, true);
             }
-            Console.WriteLine(node.Value);
-            PrintTree(node.Left, indent + "l");
-            PrintTree(node.Right, indent + "r");
         }
         // si es la cabeza se asigna como root, sino usa el metodo de agregar recursivamente
         public void Add(T value)
@@ -78,7 +92,6 @@ namespace DataStructureAndAlgorithms.DataStructures.Trees
                     }
                     else
                     {
-                        
                         AddRecursive(node.Left, value);
                     }
                 }
@@ -140,7 +153,7 @@ namespace DataStructureAndAlgorithms.DataStructures.Trees
             return node;
         }
         //la recursividad funciona diferente con los objetos por su referencias
-        //dependiendo del lugar del console.log llamara al numero, esto funciona con las asignaciones si quieres hacer un array con esos
+        //dependiendo del lugar del console.writeline llamara al numero, esto funciona con las asignaciones si quieres hacer un array con esos
         public void InOrderTraversal()
         {
             InOrderTraversalRecursive(Root);

@@ -16,18 +16,32 @@ namespace DataStructureAndAlgorithms.DataStructures.Trees
             _root = null;
         }
 
-        public void PrintTree(Node<T>? node, string indent = "")
+        public void Print()
         {
-            if (node == null) return;
+            Print(_root, "", true);
+        }
 
-            Console.Write(indent);
-            if (indent.Length > 0)
+        private void Print(Node<T>? node, string indent, bool isLast)
+        {
+            if (node != null)
             {
-                Console.Write(indent.Last() == 'l' ? "l" : "r");
+                Console.Write(indent);
+                if (isLast)
+                {
+                    Console.Write("R----");
+                    indent += "     ";
+                }
+                else
+                {
+                    Console.Write("L----");
+                    indent += "|    ";
+                }
+
+                Console.WriteLine(node.Value);
+
+                Print(node.Left, indent, false);
+                Print(node.Right, indent, true);
             }
-            Console.WriteLine(node.Value);
-            PrintTree(node.Left, indent + "l");
-            PrintTree(node.Right, indent + "r");
         }
 
         public void Insert(T value)
@@ -121,12 +135,18 @@ namespace DataStructureAndAlgorithms.DataStructures.Trees
                 {
                     // si hay dos valores busca el minimo, para el izquierdo se basara en minNode
                     //aqui es como se encuentra el sucesor
+
+                    //aqui hay algo curioso, si eliminas uno de los primeros parece que el nodo cambio de lugar
+                    //en realidad solo cambio su valor en la referencia y se elimino este de abajo
+                    // la recursion va hacia arriba recordando el valor y asignando de abajo hacia arriba
+                    //por eso los nuevos objetos tienen nuevas referencias a medida de que sube
+                    //todos los objetos se hacen inserciones en tiempo real 
                     Node<T> minNode = FindMin(node.Right);
                     node.Value = minNode.Value;
                     node.Right = DeleteRecursive(node.Right, minNode.Value);
                 }
             }
-
+            //cada recursividad retorna esto
             return node;
         }
         //Busca el minimo pues buscando hacia la izquierda hasta que sea diferente de null 
@@ -138,6 +158,51 @@ namespace DataStructureAndAlgorithms.DataStructures.Trees
             }
 
             return node;
+        }
+
+        public void InOrderTraversal()
+        {
+            InOrderTraversalRecursive(_root);
+        }
+
+        private void InOrderTraversalRecursive(Node<T>? node)
+        {
+            if (node != null)
+            {
+                InOrderTraversalRecursive(node.Left);
+                Console.WriteLine(node.Value);
+                InOrderTraversalRecursive(node.Right);
+            }
+        }
+
+        public void PreOrderTraversal()
+        {
+            PreOrderTraversalRecursive(_root);
+        }
+
+        private void PreOrderTraversalRecursive(Node<T>? node)
+        {
+            if (node != null)
+            {
+                Console.WriteLine(node.Value);
+                PreOrderTraversalRecursive(node.Left);
+                PreOrderTraversalRecursive(node.Right);
+            }
+        }
+
+        public void PostOrderTraversal()
+        {
+            PostOrderTraversalRecursive(_root);
+        }
+
+        private void PostOrderTraversalRecursive(Node<T>? node)
+        {
+            if (node != null)
+            {
+                PostOrderTraversalRecursive(node.Left);
+                PostOrderTraversalRecursive(node.Right);
+                Console.WriteLine(node.Value);
+            }
         }
     }
 }

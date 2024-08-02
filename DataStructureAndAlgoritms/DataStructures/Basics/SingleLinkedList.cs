@@ -126,7 +126,7 @@ namespace DataStructureAndAlgorithms.DataStructures.Basics
             Node? current = Head;
             while (current != null)
             {
-                Console.Write("The current data is: " + current.Data + "\n");
+                Console.Write("El dato actual es: " + current.Data + "\n");
                 current = current?.Next;
             }
             Console.WriteLine(new String('-', 80));
