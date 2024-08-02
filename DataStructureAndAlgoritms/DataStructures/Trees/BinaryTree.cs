@@ -99,6 +99,46 @@ namespace DataStructureAndAlgorithms.DataStructures.Trees
                 throw new InvalidOperationException("Cannot compare values of type " + typeof(T).Name);
             }
         }
+
+        public void Delete(T value)
+        {
+            Root = DeleteRecursive(Root, value);
+        }
+        // anade la referencia del siguiente nodo;
+        private Node<T>? DeleteRecursive(Node<T>? node, T value)
+        {
+            if (node == null) return null;
+
+            if (node.Value.Equals(value))
+            {
+                
+                if (node.Left == null && node.Right == null)
+                {
+                    return null;
+                }
+                else if (node.Left == null)
+                {
+                    return node.Right;
+                }
+                else if (node.Right == null)
+                {
+                    return node.Left;
+                }
+                else
+                {
+                    // si tiene 2 lo remplaza por el otro
+                    Node<T>? child = node.Left ?? node.Right;
+                    return child;
+                }
+            }
+            else
+            {
+                node.Left = DeleteRecursive(node.Left, value);
+                node.Right = DeleteRecursive(node.Right, value);
+            }
+
+            return node;
+        }
         //la recursividad funciona diferente con los objetos por su referencias
         //dependiendo del lugar del console.log llamara al numero, esto funciona con las asignaciones si quieres hacer un array con esos
         public void InOrderTraversal()

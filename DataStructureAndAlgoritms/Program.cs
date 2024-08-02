@@ -120,17 +120,24 @@ Person[] people = new Person[]
 
 //---------------------------------------------------------------
 Console.WriteLine("TREES");
-BinaryTree<int> tree = new BinaryTree<int>();
+BinarySearchTree<int> tree = new BinarySearchTree<int>();
+//BinaryTree<int> tree = new BinaryTree<int>();
 for (int i = 0; i < people.Length; i++)
 {
-    tree.Add(people[i].Age);
+    tree.Insert(people[i].Age);
+    //tree.Add(people[i].Age);
 }
 
 
 //tree.PostOrderTraversal();
 //tree.PreOrderTraversal();
 //tree.InOrderTraversal(); 
-tree.PrintTree(tree.Root);
+tree.PrintTree(tree._root);
+//tree.PrintTree(tree.Root);
+tree.Delete(25);
+Console.WriteLine("---------");
+tree.PrintTree(tree._root);
+//tree.PrintTree(tree.Root);
 
 Console.WriteLine(new String('-', 20));
 //----------------------------------------------------------------
