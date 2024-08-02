@@ -247,5 +247,50 @@ namespace DataStructureAndAlgorithms.DataStructures.Trees
         {
             return node == null ? 0 : GetHeight(node.Left) - GetHeight(node.Right);
         }
+
+        public void InOrderTraversal()
+        {
+            InOrderTraversalRecursive(_root);
+        }
+
+        private void InOrderTraversalRecursive(AvlTreeNode? node)
+        {
+            if (node != null)
+            {
+                InOrderTraversalRecursive(node.Left);
+                Console.WriteLine(node.Value);
+                InOrderTraversalRecursive(node.Right);
+            }
+        }
+
+        public void PreOrderTraversal()
+        {
+            PreOrderTraversalRecursive(_root);
+        }
+
+        private void PreOrderTraversalRecursive(AvlTreeNode? node)
+        {
+            if (node != null)
+            {
+                Console.WriteLine(node.Value);
+                PreOrderTraversalRecursive(node.Left);
+                PreOrderTraversalRecursive(node.Right);
+            }
+        }
+
+        public void PostOrderTraversal()
+        {
+            PostOrderTraversalRecursive(_root);
+        }
+
+        private void PostOrderTraversalRecursive(AvlTreeNode? node)
+        {
+            if (node != null)
+            {
+                PostOrderTraversalRecursive(node.Left);
+                PostOrderTraversalRecursive(node.Right);
+                Console.WriteLine(node.Value);
+            }
+        }
     }
 }

@@ -178,5 +178,6 @@ avltree.Insert(4);
 avltree.Insert(6);
 avltree.Insert(8);
 
+avltree.PreOrderTraversal();
 avltree.Print();
 
