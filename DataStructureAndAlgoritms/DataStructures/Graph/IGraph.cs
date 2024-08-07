@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataStructureAndAlgorithms.DataStructures.Graph
+{
+    public interface IGraph
+    {
+        IEnumerable<string> GetVertices();
+        IEnumerable<(string, int)> GetNeighbors(string vertex);
+    }
+}

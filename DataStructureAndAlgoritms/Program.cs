@@ -7,6 +7,9 @@ using DataStructureAndAlgorithms.Algorithms.Sorting;
 using DataStructureAndAlgorithms.Algorithms.Search;
 using DataStructureAndAlgorithms.TestData;
 using System.Collections.Generic;
+using DataStructureAndAlgorithms.DataStructures.Graph;
+using DataStructureAndAlgorithms.Algorithms.Graph.Others;
+using DataStructureAndAlgorithms.Algorithms.Graph.ShortestPath;
 // See https://aka.ms/new-console-template for more information
 /*using ShopContext context = new ShopContext();
 
@@ -181,3 +184,73 @@ avltree.Insert(8);
 avltree.PreOrderTraversal();
 avltree.Print();
 
+Console.WriteLine(new String('-', 20));
+
+//---------------------------------------------------------------------------------------
+
+DirectedWeightedGraph graph = new DirectedWeightedGraph();
+
+graph.AddVertex("A");
+graph.AddVertex("B");
+graph.AddVertex("C");
+graph.AddVertex("D");
+graph.AddVertex("E");
+
+graph.AddEdge("A", "B", 3);
+graph.AddEdge("A", "D", 3);
+graph.AddEdge("B", "C", 2);
+graph.AddEdge("B", "D", 2);
+graph.AddEdge("D", "C", 3);
+graph.AddEdge("D", "E", 2);
+graph.AddEdge("A", "C", 5);
+graph.AddEdge("C", "E", 4);
+
+
+int weight = graph.GetWeight("A", "B");
+Console.WriteLine(weight); 
+
+IEnumerable<string> vertices = graph.GetVertices();
+Console.WriteLine(string.Join(", ", vertices)); 
+
+List<(string, string, int)> edges = graph.GetEdges();
+foreach (var edge in edges)
+{
+    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
+}
+Console.WriteLine(new String('-', 20));
+
+UndirectedWeightedGraph ugraph = new UndirectedWeightedGraph();
+
+ugraph.AddVertex("A");
+ugraph.AddVertex("B");
+ugraph.AddVertex("C");
+ugraph.AddVertex("D");
+
+ugraph.AddEdge("A", "B", 5);
+ugraph.AddEdge("A", "C", 3);
+ugraph.AddEdge("B", "D", 2);
+ugraph.AddEdge("C", "D", 4);
+
+Console.WriteLine("Vertices:");
+foreach (var vertex in ugraph.GetVertices())
+{
+    Console.WriteLine(vertex);
+}
+
+Console.WriteLine("Aristas:");
+foreach (var edge in ugraph.GetEdges())
+{
+    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
+}
+
+Console.WriteLine("Peso de la arista A-B: " + ugraph.GetWeight("A", "B"));
+Console.WriteLine("Peso de las aristas C-D: " + ugraph.GetWeight("C", "D"));
+
+Console.WriteLine(new String('-', 20));
+
+FordFulkerson fordFulkerson = new FordFulkerson(graph);
+int maxFlow = fordFulkerson.MaxFlow("A", "E");
+Console.WriteLine("Flujo maximo: " + maxFlow);
+
+var shortestPath = Dijkstra.ShortestPath(graph, "A", "E");
+Console.WriteLine(string.Join(" -> ", shortestPath));
