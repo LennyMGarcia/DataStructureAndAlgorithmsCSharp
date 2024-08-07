@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using DataStructureAndAlgorithms.DataStructures.Graph;
 using DataStructureAndAlgorithms.Algorithms.Graph.Others;
 using DataStructureAndAlgorithms.Algorithms.Graph.ShortestPath;
+using DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree;
 // See https://aka.ms/new-console-template for more information
 /*using ShopContext context = new ShopContext();
 
@@ -254,3 +255,15 @@ Console.WriteLine("Flujo maximo: " + maxFlow);
 
 var shortestPath = Dijkstra.ShortestPath(graph, "A", "E");
 Console.WriteLine(string.Join(" -> ", shortestPath));
+
+var distances = BellmanFord.ShortestPath(ugraph, "A");
+Console.WriteLine(string.Join(" -> ", distances));
+
+var mst = Prim.MinimumSpanningTree(ugraph, "A");
+Console.WriteLine(string.Join(" -----> ", mst));
+
+var mst2 = Kruskal.MinimumSpanningTree(ugraph);
+foreach (var edge in mst2)
+{
+    Console.WriteLine($"({edge.Key}, weight: {edge.Value})");
+}
