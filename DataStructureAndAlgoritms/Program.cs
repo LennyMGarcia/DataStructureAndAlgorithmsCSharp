@@ -11,6 +11,7 @@ using DataStructureAndAlgorithms.DataStructures.Graph;
 using DataStructureAndAlgorithms.Algorithms.Graph.Others;
 using DataStructureAndAlgorithms.Algorithms.Graph.ShortestPath;
 using DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree;
+using DataStructureAndAlgorithms.Algorithms.Graph.Search;
 // See https://aka.ms/new-console-template for more information
 /*using ShopContext context = new ShopContext();
 
@@ -266,4 +267,23 @@ var mst2 = Kruskal.MinimumSpanningTree(ugraph);
 foreach (var edge in mst2)
 {
     Console.WriteLine($"({edge.Key}, weight: {edge.Value})");
+}
+
+var boruvka = new Boruvka();
+var mst3 = boruvka.MinimumSpanningTree(ugraph);
+
+Console.WriteLine(string.Join(" -+--0 ", mst3));
+
+var bfs = new BreadthFirstSearch();
+var result = bfs.Search(ugraph, "A");
+
+Console.WriteLine(string.Join(" -> ", result));
+
+var dfs = new DepthFirstSearch();
+var result2 = dfs.Search(ugraph, "A");
+
+Console.WriteLine("Recorrido de Depth-First Search:");
+foreach (var vertex in result2)
+{
+    Console.Write(vertex + " ");
 }
