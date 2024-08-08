@@ -219,6 +219,24 @@ foreach (var edge in edges)
 {
     Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
 }
+
+Console.WriteLine("Valor borrado");
+graph.DeleteEdge("A", "C");
+edges = graph.GetEdges();
+
+foreach (var edge in edges)
+{
+    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
+}
+Console.WriteLine("Peso editado");
+graph.EditWeight("B", "D", 6);
+edges = graph.GetEdges();
+
+foreach (var edge in edges)
+{
+    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
+}
+
 Console.WriteLine(new String('-', 20));
 
 UndirectedWeightedGraph ugraph = new UndirectedWeightedGraph();
@@ -245,8 +263,23 @@ foreach (var edge in ugraph.GetEdges())
     Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
 }
 
+Console.WriteLine("Peso editado en grafo no dirigido");
+ugraph.EditWeight("A", "B", 12);
+
+foreach (var edge in ugraph.GetEdges())
+{
+    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
+}
+
+Console.WriteLine("Eliminacion en grafo no dirigido");
+ugraph.DeleteEdge("C", "D");
+
+foreach (var edge in ugraph.GetEdges())
+{
+    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
+}
+
 Console.WriteLine("Peso de la arista A-B: " + ugraph.GetWeight("A", "B"));
-Console.WriteLine("Peso de las aristas C-D: " + ugraph.GetWeight("C", "D"));
 
 Console.WriteLine(new String('-', 20));
 

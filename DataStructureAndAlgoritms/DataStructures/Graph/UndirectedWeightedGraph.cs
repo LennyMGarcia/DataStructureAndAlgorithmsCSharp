@@ -34,6 +34,45 @@ namespace DataStructureAndAlgorithms.DataStructures.Graph
             }
         }
 
+        public void DeleteEdge(string vertex1, string vertex2)
+        {
+            if (_adjacent.ContainsKey(vertex1) && _adjacent.ContainsKey(vertex2))
+            {
+                _adjacent[vertex1].RemoveWhere(adjacent => adjacent.Item1 == vertex2);
+                _adjacent[vertex2].RemoveWhere(adjacent => adjacent.Item1 == vertex1);
+            }
+            else
+            {
+                throw new Exception("Uno de los dos vertices no existe");
+            }
+        }
+
+        public void EditWeight(string vertex1, string vertex2, int newWeight)
+        {
+            if (_adjacent.ContainsKey(vertex1) && _adjacent.ContainsKey(vertex2))
+            {
+                var edge1 = _adjacent[vertex1].FirstOrDefault(adjacent => adjacent.Item1 == vertex2);
+                var edge2 = _adjacent[vertex2].FirstOrDefault(adjacent => adjacent.Item1 == vertex1);
+
+                if (edge1 != default && edge2 != default)
+                {
+                    _adjacent[vertex1].Remove(edge1);
+                    _adjacent[vertex2].Remove(edge2);
+
+                    _adjacent[vertex1].Add((vertex2, newWeight));
+                    _adjacent[vertex2].Add((vertex1, newWeight));
+                }
+                else
+                {
+                    throw new Exception("Arista no existe");
+                }
+            }
+            else
+            {
+                throw new Exception("Uno de los dos vertices no existe");
+            }
+        }
+
         public int GetWeight(string vertex1, string vertex2)
         {
             if (_adjacent.ContainsKey(vertex1) && _adjacent.ContainsKey(vertex2))
