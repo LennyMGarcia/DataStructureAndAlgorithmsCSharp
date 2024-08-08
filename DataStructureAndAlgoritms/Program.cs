@@ -261,7 +261,7 @@ Console.WriteLine(string.Join(" +-> ", shortestPath));
 Console.WriteLine("BellmandFord");
 var distances = BellmanFord.ShortestPath(ugraph, "A");
 Console.WriteLine(string.Join(" -> ", distances));
-
+Console.WriteLine("Prim");
 var mst = Prim.MinimumSpanningTree(ugraph, "A");
 Console.WriteLine(string.Join(" -----> ", mst));
 
