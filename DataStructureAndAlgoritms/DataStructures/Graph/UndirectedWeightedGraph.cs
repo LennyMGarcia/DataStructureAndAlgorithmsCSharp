@@ -25,6 +25,7 @@ namespace DataStructureAndAlgorithms.DataStructures.Graph
         {
             if (_adjacent.ContainsKey(vertex1) && _adjacent.ContainsKey(vertex2))
             {
+                //los grafos no dirigidos se tratan como grafos bidireccionales, en teoria
                 _adjacent[vertex1].Add((vertex2, weight));
                 _adjacent[vertex2].Add((vertex1, weight)); 
             }
@@ -38,6 +39,7 @@ namespace DataStructureAndAlgorithms.DataStructures.Graph
         {
             if (_adjacent.ContainsKey(vertex1) && _adjacent.ContainsKey(vertex2))
             {
+                //se elimina ambos grafos ya que son bidirecionales
                 _adjacent[vertex1].RemoveWhere(adjacent => adjacent.Item1 == vertex2);
                 _adjacent[vertex2].RemoveWhere(adjacent => adjacent.Item1 == vertex1);
             }
@@ -51,11 +53,13 @@ namespace DataStructureAndAlgorithms.DataStructures.Graph
         {
             if (_adjacent.ContainsKey(vertex1) && _adjacent.ContainsKey(vertex2))
             {
+                
                 var edge1 = _adjacent[vertex1].FirstOrDefault(adjacent => adjacent.Item1 == vertex2);
                 var edge2 = _adjacent[vertex2].FirstOrDefault(adjacent => adjacent.Item1 == vertex1);
 
                 if (edge1 != default && edge2 != default)
                 {
+                    //se recrean y se agrega el pesp
                     _adjacent[vertex1].Remove(edge1);
                     _adjacent[vertex2].Remove(edge2);
 

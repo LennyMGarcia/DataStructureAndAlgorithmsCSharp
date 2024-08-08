@@ -220,23 +220,6 @@ foreach (var edge in edges)
     Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
 }
 
-Console.WriteLine("Valor borrado");
-graph.DeleteEdge("A", "C");
-edges = graph.GetEdges();
-
-foreach (var edge in edges)
-{
-    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
-}
-Console.WriteLine("Peso editado");
-graph.EditWeight("B", "D", 6);
-edges = graph.GetEdges();
-
-foreach (var edge in edges)
-{
-    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
-}
-
 Console.WriteLine(new String('-', 20));
 
 UndirectedWeightedGraph ugraph = new UndirectedWeightedGraph();
@@ -263,22 +246,6 @@ foreach (var edge in ugraph.GetEdges())
     Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
 }
 
-Console.WriteLine("Peso editado en grafo no dirigido");
-ugraph.EditWeight("A", "B", 12);
-
-foreach (var edge in ugraph.GetEdges())
-{
-    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
-}
-
-Console.WriteLine("Eliminacion en grafo no dirigido");
-ugraph.DeleteEdge("C", "D");
-
-foreach (var edge in ugraph.GetEdges())
-{
-    Console.WriteLine($"({edge.Item1}, {edge.Item2}, {edge.Item3})");
-}
-
 Console.WriteLine("Peso de la arista A-B: " + ugraph.GetWeight("A", "B"));
 
 Console.WriteLine(new String('-', 20));
@@ -286,9 +253,9 @@ Console.WriteLine(new String('-', 20));
 FordFulkerson fordFulkerson = new FordFulkerson(graph);
 int maxFlow = fordFulkerson.MaxFlow("A", "E");
 Console.WriteLine("Flujo maximo: " + maxFlow);
-
+Console.WriteLine("Dijkstra");
 var shortestPath = Dijkstra.ShortestPath(graph, "A", "E");
-Console.WriteLine(string.Join(" -> ", shortestPath));
+Console.WriteLine(string.Join(" +-> ", shortestPath));
 
 var distances = BellmanFord.ShortestPath(ugraph, "A");
 Console.WriteLine(string.Join(" -> ", distances));

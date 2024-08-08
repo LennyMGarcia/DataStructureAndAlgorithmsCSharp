@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataStructureAndAlgorithms.DataStructures.Graph
 {
+    //util para trabajar con ambos grafos
     public interface IGraph
     {
         IEnumerable<string> GetVertices();

@@ -38,7 +38,7 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.ShortestPath
                 }
             }
 
-            // Check for negative-weight cycles
+            
             foreach (var vertex in graph.GetVertices())
             {
                 foreach (var adjacent in graph.GetNeighbors(vertex))
