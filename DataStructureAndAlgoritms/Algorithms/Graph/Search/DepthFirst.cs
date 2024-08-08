@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataStructureAndAlgorithms.Algorithms.Graph.Search
 {
+    //se usa la recursion para explorar por profundidad
     public class DepthFirstSearch
     {
         public List<string> Search(IGraph graph, string startVertex)
@@ -27,8 +28,11 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.Search
             foreach (var neighbor in graph.GetNeighbors(vertex))
             {
                 var neighborVertex = neighbor.Item1;
+                //Se usa la recursividad para recorrer los nodos
+                //, para evitar que se agreguen dos veces verifica si se ha visitado
                 if (!visited.Contains(neighborVertex))
                 {
+                    //se pasa el vertice para seguir adelante
                     DfsHelper(graph, neighborVertex, visited, result);
                 }
             }

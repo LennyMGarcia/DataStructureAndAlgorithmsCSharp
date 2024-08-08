@@ -253,10 +253,12 @@ Console.WriteLine(new String('-', 20));
 FordFulkerson fordFulkerson = new FordFulkerson(graph);
 int maxFlow = fordFulkerson.MaxFlow("A", "E");
 Console.WriteLine("Flujo maximo: " + maxFlow);
+
 Console.WriteLine("Dijkstra");
 var shortestPath = Dijkstra.ShortestPath(graph, "A", "E");
 Console.WriteLine(string.Join(" +-> ", shortestPath));
 
+Console.WriteLine("BellmandFord");
 var distances = BellmanFord.ShortestPath(ugraph, "A");
 Console.WriteLine(string.Join(" -> ", distances));
 
