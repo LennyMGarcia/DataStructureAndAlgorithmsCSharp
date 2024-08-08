@@ -15,27 +15,28 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
             var mst = new List<(string, string, int)>();
             var connectedComponents = new Dictionary<string, HashSet<string>>();
 
-  
+            //cada componente estara inicializado con su hashset
             foreach (var vertex in graph.GetVertices())
             {
                 connectedComponents[vertex] = new HashSet<string> { vertex };
             }
 
-            
+            //mientras haya componente conectado
             while (connectedComponents.Count > 1)
             {
                 var edges = new List<(int, string, string)>();
 
-                
+                //por cada valor en el hashset
                 foreach (var component in connectedComponents.Values)
                 {
-                 
+                 //por cada string dentro del hash
                     foreach (var node in component)
                     {
-                       
+                       //se obtienen los vecinos de esos strings
                         foreach (var adjacent in graph.GetNeighbors(node))
                         {
-                            
+                            //si ya se contiene ese vecino, entonces de vuelta a los ciclos
+                            //si no esta, se agrega a la lista,
                             if (!component.Contains(adjacent.Item1))
                             {
                                 edges.Add((adjacent.Item2, node, adjacent.Item1));
@@ -44,7 +45,7 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
                     }
                 }
 
-               
+               //usa quicksort o mergesort para hcerlo
                 edges.Sort((a, b) => a.Item1.CompareTo(b.Item1));
 
                 
@@ -54,10 +55,10 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
                     var node1 = edge.Item2;
                     var node2 = edge.Item3;
 
-                    
+                    //si estan ambos nodos
                     if (connectedComponents.ContainsKey(node1) && connectedComponents.ContainsKey(node2))
                     {
-                        
+                        // si el conected componente del nodo 1 no contiene el nodo 2
                         if (!connectedComponents[node1].Contains(node2))
                         {
                            
