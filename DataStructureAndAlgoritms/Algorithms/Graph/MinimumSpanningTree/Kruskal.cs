@@ -40,6 +40,7 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
 
                 // se hara en base a jerarquia por lo que el primer elemento siempre es menor
                 // en base al primer y segundo elemento se busca cual es el padre
+                //el disjoint en si mismo evita la redundancia
                 var root1 = disjointSet.Find(node1);
                 var root2 = disjointSet.Find(node2);
 

@@ -33,6 +33,7 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
                     foreach (var node in component)
                     {
                         //una ves visitado los nodos no debe volver a agregar mas
+                        // si se agrego (A, B, 5) al MST, no se debe agregar la arista (B, A, 5), evita redundancia
                         if (!visited.Contains(node))
                         {
                             visited.Add(node);
