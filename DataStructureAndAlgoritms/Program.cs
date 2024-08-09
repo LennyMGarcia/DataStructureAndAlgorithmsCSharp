@@ -209,11 +209,12 @@ graph.AddEdge("C", "E", 4);
 
 
 int weight = graph.GetWeight("A", "B");
-Console.WriteLine(weight); 
+Console.WriteLine(weight);
 
+Console.WriteLine("vertices");
 IEnumerable<string> vertices = graph.GetVertices();
-Console.WriteLine(string.Join(", ", vertices)); 
-
+Console.WriteLine(string.Join(", ", vertices));
+Console.WriteLine("Edges");
 List<(string, string, int)> edges = graph.GetEdges();
 foreach (var edge in edges)
 {
@@ -261,10 +262,12 @@ Console.WriteLine(string.Join(" +-> ", shortestPath));
 Console.WriteLine("BellmandFord");
 var distances = BellmanFord.ShortestPath(ugraph, "A");
 Console.WriteLine(string.Join(" -> ", distances));
+
 Console.WriteLine("Prim");
 var mst = Prim.MinimumSpanningTree(ugraph, "A");
 Console.WriteLine(string.Join(" -----> ", mst));
 
+Console.WriteLine("Kruskal");
 var mst2 = Kruskal.MinimumSpanningTree(ugraph);
 foreach (var edge in mst2)
 {

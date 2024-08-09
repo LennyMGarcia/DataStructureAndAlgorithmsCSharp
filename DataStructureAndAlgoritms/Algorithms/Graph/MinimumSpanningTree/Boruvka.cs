@@ -15,6 +15,7 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
             var mst = new List<(string, string, int)>();
             var connectedComponents = new Dictionary<string, HashSet<string>>();
             var visited = new HashSet<string>();
+            var priorityQueue = new PriorityQueue<(int, string, string), int>();
 
             // cada componente estara inicializado con su hashset
             foreach (var vertex in graph.GetVertices())
@@ -25,8 +26,6 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
             // mientras haya componente conectadon y sea mayor a 1
             while (connectedComponents.Count > 1)
             {
-                var edges = new List<(int, string, string)>();
-
                 // por cada valor en el hashset
                 foreach (var component in connectedComponents.Values)
                 {
@@ -43,18 +42,18 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
                             {
                                 if (!component.Contains(adjacent.Item1))
                                 {
-                                    edges.Add((adjacent.Item2, node, adjacent.Item1));
+                                    priorityQueue.Enqueue((adjacent.Item2, node, adjacent.Item1), adjacent.Item2);
                                 }
                             }
                         }
                     }
                 }
 
-                // usa quicksort o mergesort para hacerlo
-                edges.Sort((a, b) => a.Item1.CompareTo(b.Item1));
+                
 
-                foreach (var edge in edges)
+                while (priorityQueue.Count > 0)
                 {
+                    var edge = priorityQueue.Dequeue();
                     var weight = edge.Item1;
                     var node1 = edge.Item2;
                     var node2 = edge.Item3;

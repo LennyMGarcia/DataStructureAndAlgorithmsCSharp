@@ -1,4 +1,5 @@
 ﻿using DataStructureAndAlgorithms.DataStructures.Graph;
+using DataStructureAndAlgorithms.DataStructures.Advanced;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
 {
+    //usa DisjointSet
     public class Kruskal
     {
         public static Dictionary<string, int> MinimumSpanningTree(UndirectedWeightedGraph graph)
@@ -14,79 +16,44 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
             var mst = new Dictionary<string, int>();
             var disjointSet = new DisjointSet<string>();
 
+            // cada vertice es su propio padre
             foreach (var vertex in graph.GetVertices())
             {
                 disjointSet.MakeSet(vertex);
             }
 
-            var edges = graph.GetEdges().OrderBy(e => e.Item3).ToList();
+            // crea una cola de prioridad para almacenar las aristas
+            var priorityQueue = new PriorityQueue<(string, string, int), int>();
 
-            foreach (var edge in edges)
+            // agrega todas las aristas del grafo a la cola de prioridad
+            foreach (var edge in graph.GetEdges())
             {
-                var root1 = disjointSet.Find(edge.Item1);
-                var root2 = disjointSet.Find(edge.Item2);
+                priorityQueue.Enqueue(edge, edge.Item3);
+            }
 
+            while (priorityQueue.Count > 0)
+            {
+                var edge = priorityQueue.Dequeue();
+                var weight = edge.Item3;
+                var node1 = edge.Item1;
+                var node2 = edge.Item2;
+
+                // se hara en base a jerarquia por lo que el primer elemento siempre es menor
+                // en base al primer y segundo elemento se busca cual es el padre
+                var root1 = disjointSet.Find(node1);
+                var root2 = disjointSet.Find(node2);
+
+                // a no haber jerarquia entra en el if
                 if (root1 != root2)
                 {
-                    mst.TryAdd(edge.Item1 + "-" + edge.Item2, edge.Item3);
+                    // se agrega al mst y se unen esos dos elemento creando una jerarquia,
+                    // al tener root de 0 el segundo elemento sera hijo
+                    mst.TryAdd(node1 + "-" + node2, weight);
                     disjointSet.Union(root1, root2);
                 }
             }
 
             return mst;
         }
-    }
-
-        public class DisjointSet<T>
-        {
-            private Dictionary<T, T> _parent;
-            private Dictionary<T, int> _rank;
-
-            public DisjointSet()
-            {
-                _parent = new Dictionary<T, T>();
-                _rank = new Dictionary<T, int>();
-            }
-
-            public void MakeSet(T item)
-            {
-                if (!_parent.ContainsKey(item))
-                {
-                    _parent.Add(item, item);
-                    _rank.Add(item, 0);
-                }
-            }
-
-            public T Find(T item)
-            {
-                if (!_parent[item].Equals(item))
-                {
-                    _parent[item] = Find(_parent[item]);
-                }
-                return _parent[item];
-            }
-
-            public void Union(T item1, T item2)
-            {
-                var root1 = Find(item1);
-                var root2 = Find(item2);
-
-                if (!root1.Equals(root2))
-                {
-                    if (_rank[root1] < _rank[root2])
-                    {
-                        _parent[root1] = root2;
-                    }
-                    else if (_rank[root1] > _rank[root2])
-                    {
-                        _parent[root2] = root1;
-                    }
-                    else
-                    {
-                        _parent[root2] = root1;
-                        _rank[root1]++;
-                    }
-                }
-            }
     }
 }
