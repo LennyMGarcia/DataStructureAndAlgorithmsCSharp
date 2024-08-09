@@ -270,7 +270,7 @@ foreach (var edge in mst2)
 {
     Console.WriteLine($"({edge.Key}, weight: {edge.Value})");
 }
-
+Console.WriteLine("Boruvka");
 var boruvka = new Boruvka();
 var mst3 = boruvka.MinimumSpanningTree(ugraph);
 

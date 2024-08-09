@@ -9,6 +9,8 @@ namespace DataStructureAndAlgorithms.Algorithms.Graph.MinimumSpanningTree
 {
     public class Prim
     {
+        //comienza desde un nodo especifico, va desencolando y revisando si esta visitado hasta llegar al final
+        //no es obtino para un mst global, pero si para un mst con referencia al nodo que se eligio
         public static Dictionary<string, int> MinimumSpanningTree(UndirectedWeightedGraph graph, string start)
         {
             var mst = new Dictionary<string, int>();
